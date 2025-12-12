@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements - Cercle Richard Wagner de Lyon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #BD882D;
+            --gold-light: #D4A84A;
+            --gold-dark: #9A6F24;
+            --blue: #1E427E;
+            --blue-dark: #152F5A;
+            --blue-darker: #0D1F3D;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+            --gray-dark: #2D2D2D;
+            --gray-medium: #666666;
+            --gray-light: #E8E6E2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+            background-color: var(--cream);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 70px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 16px 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--blue);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--gold);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline-white:hover {
+            background: var(--white);
+            color: var(--blue-dark);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            margin-top: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--blue-darker) 0%, var(--blue-dark) 100%);
+            z-index: -2;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23BD882D' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 31, 61, 0.4);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            margin-top: -100px;
+        }
+
+        .hero-label {
+            color: var(--gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.2;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-left: 16px;
+        }
+
+        /* Next Event Section */
+        .next-event {
+            position: relative;
+            background: #F9F8F8;
+            padding: 50px;
+            margin-top: -100px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .next-event h2 {
+            font-size: 2.8rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gray-dark);
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        /* Events Grid */
+        .events {
+            padding: 40px 50px 100px;
+            background: #F9F8F8;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px 40px;
+        }
+
+        .event-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 24px;
+            align-items: stretch;
+            background: var(--white);
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 100%;
+            min-height: 140px;
+            background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-medium);
+            font-size: 0.75rem;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .event-content {
+            padding-top: 4px;
+        }
+
+        .event-date {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-bottom: 8px;
+        }
+
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .event-description {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .event-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .event-link:hover {
+            color: var(--gold-dark);
+        }
+
+        .event-link::before {
+            content: '{';
+        }
+
+        .event-link::after {
+            content: '}';
+        }
+
+        /* Past Events Section */
+        .past-events {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .past-events .section-header {
+            margin-bottom: 50px;
+        }
+
+        .past-events h2 {
+            font-size: 2.2rem;
+            color: var(--blue);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--blue-darker);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .footer-partners {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-partners h4 {
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .footer-partners .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-partners .footer-links li {
+            margin-bottom: 0;
+        }
+
+        /* Mobile Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--blue);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 40px 24px;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 16px 0;
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-light);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-nav .btn-gold {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 12px;
+            }
+
+            .header-inner {
+                justify-content: space-between;
+            }
+
+            .logo {
+                gap: 8px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 0.9rem;
+            }
+
+            .logo-text span {
+                font-size: 0.65rem;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            /* Hero mobile - réduire espace et supprimer gap */
+            .hero {
+                margin-top: 64px;
+                height: auto;
+                min-height: 400px;
+                padding: 60px 0 40px;
+            }
+
+            .hero-content {
+                margin-top: 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .hero-text {
+                margin-left: 0;
+                margin-top: 8px;
+                text-align: center;
+            }
+
+            .next-event {
+                margin-left: 0;
+                margin-right: 0;
+                margin-top: 0;
+                padding: 30px 16px;
+            }
+
+            .events {
+                margin-left: 0;
+                margin-right: 0;
+                padding: 24px 16px;
+            }
+
+            .next-event h2 {
+                font-size: 1.6rem;
+            }
+
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-image {
+                height: 200px;
+            }
+
+            .footer {
+                padding: 40px 20px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-partners {
+                padding-top: 24px;
+                margin-bottom: 24px;
+            }
+
+            .footer-partners .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding-top: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="logoCRWL.png" alt="Cercle Richard Wagner Lyon - Logo">
+                    <div class="logo-text">
+                        Cercle Richard Wagner
+                        <span>de Lyon</span>
+                    </div>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="crw-lyon-lecercle.html">Le Cercle</a>
+                    <a href="crw-lyon-evenements.html">Événements</a>
+                    <a href="crw-lyon-contact.html">Contact</a>
+                    <a href="bulletin d'inscription.pdf" class="btn btn-gold" style="color: white;" target="_blank">Adhésion</a>
+                </nav>
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">Accueil</a>
+        <a href="crw-lyon-lecercle.html">Le Cercle</a>
+        <a href="crw-lyon-evenements.html">Événements</a>
+        <a href="crw-lyon-contact.html">Contact</a>
+        <a href="bulletin d'inscription.pdf" class="btn btn-gold" target="_blank">Adhésion</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-label">Événements</p>
+            <h1>Là où la musique de Wagner prend vie et nous rassemble</h1>
+            <div class="hero-buttons">
+                <a href="#prochain" class="btn btn-gold">{ Prochain événement }</a>
+                <span class="hero-text">Des expériences uniques<br>au cœur de l'œuvre wagnérienne.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Event Section -->
+    <section class="next-event" id="prochain">
+        <div class="container">
+            <p class="section-label">Prochain événement</p>
+            <h2>Vivez l'esprit de Wagner au fil de nos rencontres.</h2>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="events">
+        <div class="container">
+            <div class="events-grid">
+                <!-- Event 1 - Featured -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Photos récentes/IMG_6379.JPG" alt="Conférence">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">Vendredi 17 janvier 2025</p>
+                        <h3 class="event-title">Conférence musicale avec Daniel Kawka</h3>
+                        <p class="event-description">Daniel Kawka, chef d'orchestre renommé, partage sa vision et son expérience de l'œuvre wagnérienne lors d'une conférence exceptionnelle.</p>
+                        <a href="#" class="event-link">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Conférence Régis Boyer 1992.jpeg" alt="Audition">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">Février 2025 - Date à confirmer</p>
+                        <h3 class="event-title">Audition commentée : Tristan und Isolde</h3>
+                        <p class="event-description">Une exploration approfondie de l'un des chefs-d'œuvre de Wagner, avec analyses musicales et contexte historique.</p>
+                        <a href="#" class="event-link">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Conférence de Gérard SUTTON 1987.jpeg" alt="Conférence">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">Mars 2025 - Date à confirmer</p>
+                        <h3 class="event-title">Conférence : Wagner et la philosophie</h3>
+                        <p class="event-description">Une analyse des influences philosophiques sur l'œuvre de Wagner, de Schopenhauer à Nietzsche.</p>
+                        <a href="#" class="event-link">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Event 4 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Congrés International Wagner 1991.jpeg" alt="Sortie">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">Avril 2025 - Date à confirmer</p>
+                        <h3 class="event-title">Sortie au Grand Théâtre de Genève</h3>
+                        <p class="event-description">Voyage organisé pour assister à une représentation wagnérienne au prestigieux opéra de Genève.</p>
+                        <a href="#" class="event-link">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Event 5 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Photos/10éme Anniveresaire du CRWL 02.jpeg" alt="Projection">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">Mai 2025 - Date à confirmer</p>
+                        <h3 class="event-title">Projection : Le Ring à Bayreuth</h3>
+                        <p class="event-description">Projection commentée d'une production emblématique du Ring des Nibelungen au Festival de Bayreuth.</p>
+                        <a href="#" class="event-link">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Event 6 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Photos/Déplacement au Château de Faugs (maison de Vincent d'Indy) Réceptioin de CRWL par Jacques d'Indy.jpeg" alt="Château">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">Juin 2025 - Date à confirmer</p>
+                        <h3 class="event-title">Journée au Château des Fauges</h3>
+                        <p class="event-description">Notre traditionnel événement annuel dans un cadre exceptionnel, alliant musique, culture et convivialité.</p>
+                        <a href="#" class="event-link">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section class="past-events">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Archives</p>
+                <h2>Événements passés</h2>
+            </div>
+            <div class="events-grid">
+                <!-- 2022 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Numérisations/2022.jpeg" alt="Programme 2022">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">2022</p>
+                        <h3 class="event-title">Programme annuel 2022</h3>
+                        <p class="event-description">40 ans du Cercle Richard Wagner de Lyon - Une année anniversaire riche en événements.</p>
+                    </div>
+                </div>
+
+                <!-- 2021 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Numérisations/2021.jpeg" alt="Programme 2021">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">2021</p>
+                        <h3 class="event-title">Programme annuel 2021</h3>
+                        <p class="event-description">Reprise des activités après la période de confinement.</p>
+                    </div>
+                </div>
+
+                <!-- 2019 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Numérisations/2019.jpeg" alt="Programme 2019">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">2019</p>
+                        <h3 class="event-title">Programme annuel 2019</h3>
+                        <p class="event-description">Conférences, auditions et voyages au programme de cette année.</p>
+                    </div>
+                </div>
+
+                <!-- Bilan 1982-2002 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Bilan et souvenirs 1982-2002.jpeg" alt="Bilan 20 ans">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">2002</p>
+                        <h3 class="event-title">Bilan et souvenirs 1982-2002</h3>
+                        <p class="event-description">20 ans d'histoire du Cercle Richard Wagner de Lyon.</p>
+                    </div>
+                </div>
+
+                <!-- 10ème Anniversaire 1992 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Numérisations/10éme Anniversaire du CRWL 1992.jpeg" alt="10ème Anniversaire">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1992</p>
+                        <h3 class="event-title">10ème Anniversaire du CRWL</h3>
+                        <p class="event-description">Célébration des 10 ans avec la visite de Wolfgang Wagner.</p>
+                    </div>
+                </div>
+
+                <!-- Conférence Régis Boyer 1992 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Conférence Régis Boyer 1992.jpeg" alt="Conférence Régis Boyer">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1992</p>
+                        <h3 class="event-title">Conférence de Régis Boyer</h3>
+                        <p class="event-description">Wagner et les mythes nordiques par le professeur Régis Boyer.</p>
+                    </div>
+                </div>
+
+                <!-- Congrès International 1991 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Congrés International Wagner 1991.jpeg" alt="Congrès International">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1991</p>
+                        <h3 class="event-title">Congrès International Wagner</h3>
+                        <p class="event-description">Rencontre internationale des cercles Wagner à Lyon.</p>
+                    </div>
+                </div>
+
+                <!-- Wagner Folies 1988 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Wagner folies 1988.jpeg" alt="Wagner Folies">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1988</p>
+                        <h3 class="event-title">Wagner Folies</h3>
+                        <p class="event-description">Un événement festif autour de l'univers wagnérien.</p>
+                    </div>
+                </div>
+
+                <!-- Conférence Gérard Sutton 1987 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="annonces/Conférence de Gérard SUTTON 1987.jpeg" alt="Conférence Gérard Sutton">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1987</p>
+                        <h3 class="event-title">Conférence de Gérard Sutton</h3>
+                        <p class="event-description">Une analyse approfondie de l'œuvre wagnérienne.</p>
+                    </div>
+                </div>
+
+                <!-- 1985 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Numérisations/1985.jpeg" alt="Programme 1985">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1985</p>
+                        <h3 class="event-title">Programme annuel 1985</h3>
+                        <p class="event-description">Les premières années du Cercle.</p>
+                    </div>
+                </div>
+
+                <!-- 1983 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="Numérisations/1983.jpeg" alt="Programme 1983">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-date">1983</p>
+                        <h3 class="event-title">Programme annuel 1983</h3>
+                        <p class="event-description">Deuxième année d'existence du Cercle Richard Wagner de Lyon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-text" style="color: white;">
+                            Cercle Richard Wagner
+                            <span>de Lyon</span>
+                        </div>
+                    </a>
+                    <p>Association culturelle dédiée à la célébration et à la diffusion de l'œuvre de Richard Wagner depuis 1982. Membre du Richard Wagner Verband International.</p>
+                    <div class="footer-social">
+                        <a href="#">f</a>
+                        <a href="#">in</a>
+                        <a href="#">✉</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="crw-lyon-lecercle.html">Le Cercle</a></li>
+                        <li><a href="crw-lyon-evenements.html">Événements</a></li>
+                        <li><a href="bulletin d'inscription.pdf" target="_blank">Adhésion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Informations</h4>
+                    <ul class="footer-links">
+                        <li><a href="crw-lyon-contact.html">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@crw-lyon.fr">contact@crw-lyon.fr</a></li>
+                        <li><a href="#">Lyon, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-partners">
+                <h4>Nos partenaires</h4>
+                <ul class="footer-links">
+                    <li><a href="https://laviewagnerienne.canalblog.com" target="_blank">La Vie Wagnérienne</a></li>
+                    <li><a href="https://www.richard-wagner.org" target="_blank">Richard Wagner Verband International</a></li>
+                    <li><a href="https://richard-wagner-zentrum.de" target="_blank">Richard Wagner Zentrum</a></li>
+                    <li><a href="https://richard-wagner-web-museum.com" target="_blank">Richard Wagner Web Museum</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Cercle Richard Wagner de Lyon. Tous droits réservés.</p>
+                <p>Site offert par <a href="https://richard-wagner-web-museum.com" target="_blank">Richard Wagner Museum</a> et réalisé par <a href="https://pixel-drop.com" target="_blank">Pixel Drop</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+    </script>
+</body>
+</html>

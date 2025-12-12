@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cercle Richard Wagner de Lyon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #BD882D;
+            --gold-light: #D4A84A;
+            --gold-dark: #9A6F24;
+            --blue: #1E427E;
+            --blue-dark: #152F5A;
+            --blue-darker: #0D1F3D;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+            --gray-dark: #2D2D2D;
+            --gray-medium: #666666;
+            --gray-light: #E8E6E2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+            background-color: var(--cream);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 70px;
+        }
+
+        /* Corner Fold Effect */
+        .corner-fold {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .corner-fold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 60px 60px 0;
+            border-color: transparent var(--gold) transparent transparent;
+            z-index: 2;
+        }
+
+        .corner-fold::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 60px;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.1));
+            transform: skewX(-45deg);
+            transform-origin: top right;
+            z-index: 1;
+        }
+
+        .corner-fold-blue::before {
+            border-color: transparent var(--blue) transparent transparent;
+        }
+
+        .corner-fold-lg::before {
+            border-width: 0 80px 80px 0;
+        }
+
+        .corner-fold-lg::after {
+            right: 80px;
+            height: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 16px 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--blue);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--gold);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(189, 136, 45, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--blue);
+        }
+
+        .btn-white:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #0D2141;
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(189, 136, 45, 0.2);
+            border: 1px solid var(--gold);
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .hero h1 span {
+            color: var(--gold-light);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image-main {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .hero-fold-wrap {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 127px;
+            height: 124px;
+            background-color: #0D2141;
+            background-image: url('plis-tr.svg');
+            background-position: bottom left;
+            background-repeat: no-repeat;
+            background-size: 127px 124px;
+            z-index: 2;
+        }
+
+        .hero-logo-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--white);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-logo-badge img {
+            height: 80px;
+            width: auto;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 70px;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--blue);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            color: var(--gray-medium);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--gold-light);
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--blue);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+        }
+
+        /* Event Section */
+        .event {
+            padding: 100px 70px;
+            background: var(--blue-darker);
+            color: var(--white);
+            position: relative;
+        }
+
+        .event::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23BD882D' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .event-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+        }
+
+        .event-image {
+            position: relative;
+        }
+
+        .event-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .event-fold-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 127px;
+            height: 124px;
+            background-color: #0C1F3D;
+            background-image: url('plis.svg');
+            background-position: bottom right;
+            background-repeat: no-repeat;
+            background-size: 127px 124px;
+            z-index: 2;
+        }
+
+        .event-content {
+            position: relative;
+        }
+
+        .event-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold);
+            color: var(--white);
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .event-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .event h2 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .event-speaker {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .event-description {
+            opacity: 0.9;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .event-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid var(--gold);
+            flex: 1;
+        }
+
+        .event-location-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .event-location-text h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .event-location-text p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .editable-notice {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(189, 136, 45, 0.15);
+            border: 1px dashed var(--gold);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            margin-top: 16px;
+        }
+
+        /* Quote Section */
+        .quote {
+            padding: 80px 70px;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .quote blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--blue);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .quote blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            position: absolute;
+            top: -20px;
+            left: -40px;
+            opacity: 0.3;
+        }
+
+        .quote cite {
+            color: var(--gold);
+            font-style: normal;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 70px;
+            background: var(--white);
+        }
+
+        .gallery-slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .gallery-slider-container {
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .gallery-slider {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item {
+            flex: 0 0 calc((100% - 48px) / 3);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 320px;
+            background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-medium);
+            font-size: 0.85rem;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 60px 20px 20px;
+            color: var(--white);
+        }
+
+        .gallery-caption h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .gallery-caption p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .gallery-nav-btn {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--blue);
+            background: transparent;
+            color: var(--blue);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .gallery-nav-btn:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            color: var(--white);
+            padding: 16px;
+        }
+
+        .lightbox-caption h4 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .lightbox-caption p {
+            opacity: 0.7;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--white);
+            cursor: pointer;
+            z-index: 2001;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: var(--white);
+            cursor: pointer;
+            padding: 20px;
+            transition: opacity 0.3s ease;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 60px 70px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 80px 70px;
+            background: var(--cream);
+        }
+
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            height: 80px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .partner-logo img {
+            max-height: 60px;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 70px;
+            background: linear-gradient(rgba(13, 33, 65, 0.7), rgba(21, 47, 90, 0.75)), url('Photos/10éme Anniveresaire du CRWL 02.jpeg');
+            background-size: cover;
+            background-position: center top;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--blue-darker);
+            color: var(--white);
+            padding: 60px 70px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .footer-partners {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-partners h4 {
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .footer-partners .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-partners .footer-links li {
+            margin-bottom: 0;
+        }
+
+        /* About Us Section */
+        .about-us {
+            padding: 100px 70px;
+            background: #F9F8F8;
+        }
+
+        .about-us-inner {
+            max-width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-us-images {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-us-single-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+        }
+
+        .about-us-content {
+            padding-right: 40px;
+        }
+
+        .about-us-title {
+            font-size: 2.2rem;
+            color: var(--blue);
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+
+        .about-us-intro {
+            font-size: 1.1rem;
+            color: var(--gray-dark);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .about-us-desc {
+            font-size: 0.95rem;
+            color: var(--gray-medium);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animation delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Parallax effect */
+        .parallax {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-inner,
+            .event-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--blue);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 40px 24px;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 16px 0;
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-light);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-nav .btn-gold {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 12px;
+            }
+
+            .header-inner {
+                justify-content: space-between;
+            }
+
+            .logo {
+                gap: 8px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 0.9rem;
+            }
+
+            .logo-text span {
+                font-size: 0.65rem;
+            }
+
+            .container {
+                padding: 0 16px;
+                overflow-x: hidden;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            /* Hero section mobile - moins d'espace avec header */
+            .hero {
+                overflow: hidden;
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-inner {
+                overflow: hidden;
+            }
+
+            /* Réduire le container du plis sur mobile */
+            .hero-fold-wrap {
+                width: 60px;
+                height: 60px;
+                background-size: 60px 60px;
+            }
+
+            .hero-logo-badge {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .features-grid,
+            .gallery-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Section About Us mobile */
+            .about-us {
+                padding: 60px 20px;
+            }
+
+            .about-us-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-us-images {
+                display: none;
+            }
+
+            .about-us-content {
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .about-us-title {
+                font-size: 1.6rem;
+            }
+
+            /* Section Event (prochain événement) mobile */
+            .event {
+                padding: 60px 20px;
+            }
+
+            .event-inner {
+                gap: 30px;
+            }
+
+            .event-content {
+                padding: 0;
+            }
+
+            .event-content h2 {
+                font-size: 1.6rem;
+            }
+
+            /* Masquer date et intervenant sur mobile */
+            .event-date,
+            .event-speaker {
+                display: none;
+            }
+
+            /* Réduire hauteur photo événement sur mobile */
+            .event-image-placeholder {
+                height: 280px;
+            }
+
+            /* Réduire le plis de l'événement sur mobile */
+            .event-fold-wrap {
+                width: 60px;
+                height: 60px;
+                background-size: 60px 60px;
+            }
+
+            .event-footer {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .event-description {
+                font-size: 0.9rem;
+            }
+
+            /* Gallery mobile - masquer entièrement */
+            .gallery {
+                display: none;
+            }
+
+            .section-header {
+                margin-bottom: 30px;
+            }
+
+            /* Quote section mobile */
+            .quote {
+                padding: 50px 20px;
+            }
+
+            .quote blockquote {
+                font-size: 1.3rem;
+            }
+
+            /* Stats section mobile */
+            .stats {
+                padding: 50px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            /* Partners section mobile */
+            .partners {
+                padding: 50px 20px;
+            }
+
+            .partners-grid {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            /* CTA section mobile */
+            .cta {
+                padding: 60px 20px;
+            }
+
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer {
+                padding: 40px 20px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-partners {
+                padding-top: 24px;
+                margin-bottom: 24px;
+            }
+
+            .footer-partners .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding-top: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="logoCRWL.png" alt="Cercle Richard Wagner Lyon - Logo">
+                    <div class="logo-text">
+                        Cercle Richard Wagner
+                        <span>de Lyon</span>
+                    </div>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="crw-lyon-lecercle.html">Le Cercle</a>
+                    <a href="crw-lyon-evenements.html">Événements</a>
+                    <a href="crw-lyon-contact.html">Contact</a>
+                    <a href="bulletin d'inscription.pdf" class="btn btn-gold" style="color: white;" target="_blank">Adhésion</a>
+                </nav>
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">Accueil</a>
+        <a href="crw-lyon-lecercle.html">Le Cercle</a>
+        <a href="crw-lyon-evenements.html">Événements</a>
+        <a href="crw-lyon-contact.html">Contact</a>
+        <a href="bulletin d'inscription.pdf" class="btn btn-gold" target="_blank">Adhésion</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span>✦</span>
+                        Depuis 1982
+                    </div>
+                    <h1>Bienvenue au <span>Cercle Richard Wagner</span> de Lyon</h1>
+                    <p>Depuis 1982, notre association rassemble les passionnés désireux d'explorer l'œuvre de Richard Wagner. Conférences, rencontres, événements musicaux et spectacles vous attendent lors de nos rendez-vous mensuels conviviaux.</p>
+                    <div class="hero-buttons">
+                        <a href="crw-lyon-evenements.html" class="btn btn-gold" style="width: 100%; text-align: center;">Découvrir nos événements</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-main" style="background-image: url('Photos récentes/photo_1 (22).jpeg'); background-size: cover; background-position: center;">
+                        <div class="hero-fold-wrap"></div>
+                    </div>
+                    <div class="hero-logo-badge">
+                        <img src="logoCRWL.png" alt="Cercle Richard Wagner de Lyon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us">
+        <div class="about-us-inner">
+            <div class="about-us-images fade-in">
+                <img src="WAGNER.png" alt="Richard Wagner" class="about-us-single-img">
+            </div>
+            <div class="about-us-content">
+                <p class="section-label fade-in">À propos</p>
+                <h2 class="about-us-title fade-in delay-1">Nous honorons et protégeons l'héritage de Wagner — en préservant sa mémoire.</h2>
+                <p class="about-us-intro fade-in delay-2">
+                    Depuis 1982, le Cercle Richard Wagner de Lyon rassemble les passionnés de l'œuvre du compositeur allemand dans une ambiance conviviale et enrichissante.
+                </p>
+                <p class="about-us-desc fade-in delay-3">
+                    Notre association propose chaque mois des conférences, rencontres avec des artistes, projections et auditions commentées. Rejoignez notre communauté pour explorer ensemble l'univers fascinant de la musique wagnérienne.
+                </p>
+                <a href="bulletin d'inscription.pdf" class="btn btn-gold fade-in delay-4" target="_blank">{ Adhésion }</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Event Section -->
+    <section class="event">
+        <div class="container">
+            <div class="event-inner">
+                <div class="event-image fade-in-left">
+                    <div class="event-image-placeholder parallax" data-speed="0.03" style="background-image: url('Photos récentes/IMG_6379.JPG'); background-size: cover; background-position: center;">
+                        <div class="event-fold-wrap"></div>
+                    </div>
+                </div>
+                <div class="event-content fade-in-right">
+                    <span class="event-badge">Prochain événement</span>
+                    <p class="event-date">Samedi 17 janvier 2025 à 15h</p>
+                    <h2>Le métier de chef wagnérien</h2>
+                    <p class="event-speaker">Rencontre avec Daniel Kawka, chef d'orchestre</p>
+                    <p class="event-description">
+                        Chef de renom, ancien directeur de recherches en musicologie et fondateur de plusieurs ensembles prestigieux, Daniel Kawka partagera son expérience du répertoire germanique et les arcanes de la direction d'orchestre. La rencontre sera enrichie d'extraits vidéo et d'une présentation de son ouvrage <em>« Ose ! : une poétique de l'orchestre »</em> (Éditions EST, 2025). Galette des rois et boissons à l'issue de la rencontre.
+                    </p>
+                    <div class="event-footer">
+                        <div class="event-location">
+                            <span class="event-location-icon">📍</span>
+                            <div class="event-location-text">
+                                <h4>Société de Lecture</h4>
+                                <p>39 bis rue de Marseille, 69007 Lyon</p>
+                            </div>
+                        </div>
+                        <a href="crw-lyon-evenements.html" class="btn btn-gold">Voir tous les événements</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label">Notre histoire</p>
+                <h2 class="section-title">Moments mémorables</h2>
+                <p class="section-subtitle">Retour en images sur les événements marquants du Cercle</p>
+            </div>
+            <div class="gallery-slider-wrapper">
+                <button class="gallery-nav-btn" id="galleryPrev">←</button>
+                <div class="gallery-slider-container">
+                    <div class="gallery-slider" id="gallerySlider">
+                        <div class="gallery-item fade-in" data-index="0">
+                            <div class="gallery-image" style="background-image: url('Photos/10éme anniversaire du CRWL.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>10ème anniversaire</h4>
+                                <p>Visite de Wolfgang Wagner</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in delay-1" data-index="1">
+                            <div class="gallery-image" style="background-image: url('Photos/10éme Anniversaire CRWL Allocution de W. Wagner.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Allocution</h4>
+                                <p>Wolfgang Wagner - 10 ans CRWL</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in delay-2" data-index="2">
+                            <div class="gallery-image" style="background-image: url('Photos/Concours International de chant Voix wagnériennes Les chanteurs finalises de 1994 3 ont chanté à Bayreuth Mihoko Fugimura Violette Urmana Detlef Roth Photo Expression.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Concours de voix</h4>
+                                <p>Voix wagnériennes 1994</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in delay-3" data-index="3">
+                            <div class="gallery-image" style="background-image: url('Photos/Detlef Roth Gagnat du concours de chant 1994 Photo Expression.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Detlef Roth</h4>
+                                <p>Gagnant concours 1994</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in" data-index="4">
+                            <div class="gallery-image" style="background-image: url('Photos/Déplacement au Château de Faugs (maison de Vincent d'Indy) Réceptioin de CRWL par Jacques d'Indy.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Château des Fauges</h4>
+                                <p>Maison de Vincent d'Indy</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in delay-1" data-index="5">
+                            <div class="gallery-image" style="background-image: url('Photos/Réception de Rita Gorr Auditorium Ravel 01.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Réception Rita Gorr</h4>
+                                <p>Auditorium Ravel</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in delay-2" data-index="6">
+                            <div class="gallery-image" style="background-image: url('Photos/Récital Daniel Wayenberg (piano) Jane Mengedoth (soprano).jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Récital</h4>
+                                <p>Daniel Wayenberg & Jane Mengedoth</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item fade-in delay-3" data-index="7">
+                            <div class="gallery-image" style="background-image: url('Photos/L'enclume en nougat des 10 ans du CRWL fracassée par W. Wagner.jpeg'); background-size: cover; background-position: center;"></div>
+                            <div class="gallery-caption">
+                                <h4>Enclume en nougat</h4>
+                                <p>10 ans du CRWL</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="gallery-nav-btn" id="galleryNext">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">×</span>
+        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</span>
+        <span class="lightbox-nav lightbox-next" id="lightboxNext">›</span>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+            <div class="lightbox-caption">
+                <h4 id="lightboxTitle"></h4>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label">Nos partenaires</p>
+                <h2 class="section-title">Ils nous soutiennent</h2>
+            </div>
+            <div class="partners-grid">
+                <a href="https://www.richard-wagner.org" target="_blank" class="partner-logo fade-in delay-1">
+                    <img src="partenaires/rwvi_logo.jpg" alt="Richard Wagner Verband International">
+                </a>
+                <a href="https://richard-wagner-web-museum.com" target="_blank" class="partner-logo fade-in delay-2">
+                    <img src="partenaires/richard wagner museum.webp" alt="Richard Wagner Museum">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Rejoignez le Cercle</h2>
+            <p class="fade-in delay-1">Devenez membre du Cercle Richard Wagner de Lyon et participez à une aventure culturelle unique au cœur de la musique wagnérienne.</p>
+            <div class="cta-buttons fade-in delay-2">
+                <a href="bulletin d'inscription.pdf" class="btn btn-gold" target="_blank">Télécharger le bulletin d'adhésion</a>
+                <a href="crw-lyon-contact.html" class="btn btn-white">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-text" style="color: white;">
+                            Cercle Richard Wagner
+                            <span>de Lyon</span>
+                        </div>
+                    </a>
+                    <p>Association culturelle dédiée à la célébration et à la diffusion de l'œuvre de Richard Wagner depuis 1982. Membre du Richard Wagner Verband International.</p>
+                    <div class="footer-social">
+                        <a href="#">f</a>
+                        <a href="#">in</a>
+                        <a href="#">✉</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="crw-lyon-lecercle.html">Le Cercle</a></li>
+                        <li><a href="crw-lyon-evenements.html">Événements</a></li>
+                        <li><a href="bulletin d'inscription.pdf" target="_blank">Adhésion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Informations</h4>
+                    <ul class="footer-links">
+                        <li><a href="crw-lyon-contact.html">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@crw-lyon.fr">contact@crw-lyon.fr</a></li>
+                        <li><a href="#">Lyon, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-partners">
+                <h4>Nos partenaires</h4>
+                <ul class="footer-links">
+                    <li><a href="https://laviewagnerienne.canalblog.com" target="_blank">La Vie Wagnérienne</a></li>
+                    <li><a href="https://www.richard-wagner.org" target="_blank">Richard Wagner Verband International</a></li>
+                    <li><a href="https://richard-wagner-zentrum.de" target="_blank">Richard Wagner Zentrum</a></li>
+                    <li><a href="https://richard-wagner-web-museum.com" target="_blank">Richard Wagner Web Museum</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Cercle Richard Wagner de Lyon. Tous droits réservés.</p>
+                <p>Site offert par <a href="https://richard-wagner-web-museum.com" target="_blank">Richard Wagner Museum</a> et réalisé par <a href="https://pixel-drop.com" target="_blank">Pixel Drop</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile Menu
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Parallax effect on scroll
+        const parallaxElements = document.querySelectorAll('.parallax');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.speed) || 0.05;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + scrollY;
+                const offset = (scrollY - elementTop) * speed;
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.transform = `translateY(${offset}px)`;
+                }
+            });
+        });
+
+        // Gallery Slider
+        const gallerySlider = document.getElementById('gallerySlider');
+        const galleryPrev = document.getElementById('galleryPrev');
+        const galleryNext = document.getElementById('galleryNext');
+        const totalItems = document.querySelectorAll('.gallery-item').length;
+        const itemsVisible = 3;
+        let currentSlide = 0;
+        const maxSlide = totalItems - itemsVisible;
+
+        function updateSlider() {
+            const itemWidth = gallerySlider.querySelector('.gallery-item').offsetWidth;
+            const gap = 24;
+            const translateX = currentSlide * (itemWidth + gap);
+            gallerySlider.style.transform = `translateX(-${translateX}px)`;
+        }
+
+        galleryPrev.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        });
+
+        galleryNext.addEventListener('click', () => {
+            if (currentSlide < maxSlide) {
+                currentSlide++;
+                updateSlider();
+            }
+        });
+
+        window.addEventListener('resize', updateSlider);
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        const galleryData = [
+            { src: 'Photos/10éme anniversaire du CRWL.jpeg', title: '10ème anniversaire', desc: 'Visite de Wolfgang Wagner' },
+            { src: 'Photos/10éme Anniversaire CRWL Allocution de W. Wagner.jpeg', title: 'Allocution', desc: 'Wolfgang Wagner - 10 ans CRWL' },
+            { src: 'Photos/Concours International de chant Voix wagnériennes Les chanteurs finalises de 1994 3 ont chanté à Bayreuth Mihoko Fugimura Violette Urmana Detlef Roth Photo Expression.jpeg', title: 'Concours de voix', desc: 'Voix wagnériennes 1994' },
+            { src: 'Photos/Detlef Roth Gagnat du concours de chant 1994 Photo Expression.jpeg', title: 'Detlef Roth', desc: 'Gagnant concours 1994' },
+            { src: 'Photos/Déplacement au Château de Faugs (maison de Vincent d\'Indy) Réceptioin de CRWL par Jacques d\'Indy.jpeg', title: 'Château des Fauges', desc: 'Maison de Vincent d\'Indy' },
+            { src: 'Photos/Réception de Rita Gorr Auditorium Ravel 01.jpeg', title: 'Réception Rita Gorr', desc: 'Auditorium Ravel' },
+            { src: 'Photos/Récital Daniel Wayenberg (piano) Jane Mengedoth (soprano).jpeg', title: 'Récital', desc: 'Daniel Wayenberg & Jane Mengedoth' },
+            { src: 'Photos/L\'enclume en nougat des 10 ans du CRWL fracassée par W. Wagner.jpeg', title: 'Enclume en nougat', desc: '10 ans du CRWL' }
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const item = galleryData[currentIndex];
+            lightboxImage.src = item.src;
+            lightboxTitle.textContent = item.title;
+            lightboxDesc.textContent = item.desc;
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+            updateLightbox();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % galleryData.length;
+            updateLightbox();
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+    </script>
+</body>
+</html>

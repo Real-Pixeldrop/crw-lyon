@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Cercle - Cercle Richard Wagner de Lyon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #BD882D;
+            --gold-light: #D4A84A;
+            --gold-dark: #9A6F24;
+            --blue: #1E427E;
+            --blue-dark: #152F5A;
+            --blue-darker: #0D1F3D;
+            --cream: #F8F6F2;
+            --white: #FFFFFF;
+            --gray-dark: #2D2D2D;
+            --gray-medium: #666666;
+            --gray-light: #E8E6E2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+            background-color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 70px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 16px 70px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--blue);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--gold);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(189, 136, 45, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 82px;
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--blue-darker) 0%, var(--blue-dark) 100%);
+            z-index: -2;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23BD882D' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 31, 61, 0.4);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            color: var(--gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.2;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-content {
+            margin-top: -100px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-left: 16px;
+        }
+
+        /* Our Story Section - Ancestra Style */
+        .story {
+            position: relative;
+            background: #F9F8F8;
+            padding: 50px;
+            margin-top: -100px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .about-page-about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 50px;
+            width: 100%;
+        }
+
+        /* Left column - Photo block with corner fold (like Ancestra) */
+        .about-photo-block {
+            background-image: url('Photos récentes/20251130_145408.jpg');
+            background-position: center;
+            background-size: cover;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            grid-row: 1 / 3;
+            position: relative;
+        }
+
+        /* Text wrap with corner fold effect - Ancestra style exact */
+        .about-photo-text-wrap {
+            background-color: #F9F8F8;
+            flex-direction: column;
+            width: 254px;
+            height: 247px;
+            padding: 0;
+            display: flex;
+            gap: 18px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: flex-start;
+            justify-content: flex-start;
+            background-image: url('plis.svg');
+            background-position: bottom right;
+            background-repeat: no-repeat;
+            background-size: 254px 247px;
+        }
+
+        .about-photo-text-wrap .year-number,
+        .about-photo-text-wrap .about-small-paragraph-wrap {
+            max-width: 126px;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Staggered animation delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Parallax effect */
+        .parallax {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        .year-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-style: italic;
+            color: var(--gold);
+            line-height: 0.8;
+        }
+
+        .about-small-paragraph-wrap {
+            max-width: 140px;
+        }
+
+        /* Conférenciers Section */
+        .conferenciers {
+            padding: 100px 50px;
+            background: #FFFFFF;
+        }
+
+        .conferenciers-inner {
+            display: grid;
+            grid-template-columns: 1.4fr 2fr;
+            gap: 120px;
+            align-items: start;
+        }
+
+        .conferenciers-text {
+            position: sticky;
+            top: 120px;
+        }
+
+        .conferenciers-text .section-label {
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .conferenciers-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gray-dark);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .conferenciers-intro {
+            font-size: 0.95rem;
+            color: var(--gray-dark);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .conferenciers-desc {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .conferenciers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 60px;
+        }
+
+        .conferencier-card {
+            position: relative;
+        }
+
+        .conferencier-photo {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background-color: #2a2a2a;
+            background-size: cover;
+            background-position: center top;
+            overflow: visible;
+        }
+
+        .conferencier-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #FFFFFF;
+            background-image: url('plis-small-tr.svg');
+            background-position: bottom left;
+            background-repeat: no-repeat;
+            background-size: 60px 60px;
+        }
+
+        .conferencier-info {
+            padding-top: 16px;
+        }
+
+        .conferencier-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 4px;
+        }
+
+        .conferencier-role {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* Responsive conférenciers */
+        @media (max-width: 1024px) {
+            .conferenciers-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .conferenciers-text {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .conferenciers {
+                padding: 60px 24px;
+            }
+
+            .conferenciers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .conferenciers-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        .year-text {
+            font-size: 0.8rem;
+            color: var(--gray-medium);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Right column - Text */
+        .about-block-text-wrap {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            max-width: 600px;
+            display: flex;
+            padding: 20px 0;
+        }
+
+        .title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gray-dark);
+            line-height: 1.2;
+        }
+
+        .about-paragraphs-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .story-intro {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--gray-dark);
+            line-height: 1.7;
+        }
+
+        .story-text {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            line-height: 1.8;
+        }
+
+        /* Right column - Bottom image */
+        .about-image {
+            background-image: url('Photos récentes/Unknown.jpeg');
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--blue-darker);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-top: 16px;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .footer-partners {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-partners h4 {
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+
+        .footer-partners .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-partners .footer-links li {
+            margin-bottom: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-page-about {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                gap: 30px;
+            }
+
+            .about-photo-block {
+                grid-row: auto;
+                min-height: 450px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .burger-menu span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--blue);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 40px 24px;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 16px 0;
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--gray-light);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-nav .btn-gold {
+            margin-top: 24px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 12px;
+            }
+
+            .header-inner {
+                justify-content: space-between;
+            }
+
+            .logo {
+                gap: 8px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 0.9rem;
+            }
+
+            .logo-text span {
+                font-size: 0.65rem;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            /* Hero mobile - bien centré avec espace */
+            .hero {
+                margin-top: 64px;
+                height: auto;
+                min-height: 380px;
+                padding: 50px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero-content {
+                margin-top: 0;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .hero-text {
+                margin-left: 0;
+                margin-top: 8px;
+                text-align: center;
+            }
+
+            .story {
+                margin-left: 0;
+                margin-right: 0;
+                margin-top: 0;
+                padding: 24px 20px;
+            }
+
+            .about-photo-block {
+                min-height: 300px;
+            }
+
+            /* Réduire le plis sur mobile */
+            .about-photo-text-wrap {
+                width: 80px;
+                height: 80px;
+                padding: 0;
+                background-size: 80px 80px;
+            }
+
+            /* Masquer les éléments texte du plis sur mobile */
+            .about-photo-text-wrap .year-number,
+            .about-photo-text-wrap .about-small-paragraph-wrap {
+                display: none;
+            }
+
+            .about-block-text-wrap {
+                padding: 0;
+            }
+
+            .about-image {
+                height: 250px;
+            }
+
+            .story-title {
+                font-size: 1.5rem;
+            }
+
+            .footer {
+                padding: 40px 20px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-partners {
+                padding-top: 24px;
+                margin-bottom: 24px;
+            }
+
+            .footer-partners .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding-top: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="logoCRWL.png" alt="Cercle Richard Wagner Lyon - Logo">
+                    <div class="logo-text">
+                        Cercle Richard Wagner
+                        <span>de Lyon</span>
+                    </div>
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="crw-lyon-lecercle.html">Le Cercle</a>
+                    <a href="crw-lyon-evenements.html">Événements</a>
+                    <a href="crw-lyon-contact.html">Contact</a>
+                    <a href="bulletin d'inscription.pdf" class="btn btn-gold" style="color: white;" target="_blank">Adhésion</a>
+                </nav>
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">Accueil</a>
+        <a href="crw-lyon-lecercle.html">Le Cercle</a>
+        <a href="crw-lyon-evenements.html">Événements</a>
+        <a href="crw-lyon-contact.html">Contact</a>
+        <a href="bulletin d'inscription.pdf" class="btn btn-gold" target="_blank">Adhésion</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-label">Le Cercle</p>
+            <h1>Une communauté de passionnés unis par l'œuvre de Wagner</h1>
+            <div class="hero-buttons">
+                <a href="#histoire" class="btn btn-gold">{ Notre histoire }</a>
+                <span class="hero-text">Depuis 1982, au cœur de Lyon.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section - Ancestra Style -->
+    <section class="story" id="histoire">
+        <div class="about-page-about">
+            <!-- Left: Photo block with corner fold overlay -->
+            <div class="about-photo-block parallax" data-speed="0.05">
+                <div class="about-photo-text-wrap fade-in-left">
+                    <div class="year-number">1982</div>
+                    <div class="about-small-paragraph-wrap">
+                        <p class="year-text">Plus de quarante ans à partager la passion de l'œuvre wagnérienne.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right: Text content -->
+            <div class="about-block-text-wrap">
+                <div class="title-wrap">
+                    <div class="section-label fade-in delay-1">Notre histoire</div>
+                    <h2 class="story-title fade-in delay-2">Nous honorons et protégeons l'héritage de Wagner — en préservant sa mémoire.</h2>
+                </div>
+                <div class="about-paragraphs-wrap">
+                    <p class="story-intro fade-in delay-3">Fondé par un groupe de passionnés de musique et de culture lyonnaise, le Cercle Richard Wagner de Lyon est né du désir de partager et de faire vivre l'œuvre du compositeur allemand.</p>
+                    <p class="story-text fade-in delay-4">Nos activités couvrent de nombreux domaines : conférences avec des musicologues et chefs d'orchestre, auditions commentées d'enregistrements historiques, projections de productions emblématiques, et voyages vers les hauts lieux wagnériens. Au-delà de la découverte musicale, nous créons des ponts entre les générations de mélomanes.</p>
+                </div>
+            </div>
+            <!-- Right: Bottom image -->
+            <div class="about-image parallax fade-in" data-speed="0.08"></div>
+        </div>
+    </section>
+
+    <!-- Conférenciers Section -->
+    <section class="conferenciers">
+        <div class="conferenciers-inner">
+            <div class="conferenciers-text">
+                <p class="section-label fade-in">Conférenciers</p>
+                <h2 class="conferenciers-title fade-in delay-1">Des experts passionnés au service de Wagner</h2>
+                <p class="conferenciers-intro fade-in delay-2">Nos conférences réunissent musicologues, chefs d'orchestre et spécialistes qui partagent leur expertise et leur passion pour l'œuvre wagnérienne.</p>
+                <p class="conferenciers-desc fade-in delay-3">Découvrez les personnalités qui ont enrichi nos rencontres et contribué à faire vivre la musique de Wagner au sein de notre cercle.</p>
+                <a href="crw-lyon-evenements.html" class="btn btn-gold fade-in delay-4">Voir les événements</a>
+            </div>
+            <div class="conferenciers-grid">
+                <div class="conferencier-card fade-in delay-1">
+                    <div class="conferencier-photo" style="background-image: url('Les conférenciers/Christophe Looten.jpg');"></div>
+                    <div class="conferencier-info">
+                        <h3 class="conferencier-name">Christophe Looten</h3>
+                        <p class="conferencier-role">Compositeur & Musicologue</p>
+                    </div>
+                </div>
+                <div class="conferencier-card fade-in delay-2">
+                    <div class="conferencier-photo" style="background-image: url('Les conférenciers/Philippe Berthier.jpg');"></div>
+                    <div class="conferencier-info">
+                        <h3 class="conferencier-name">Philippe Berthier</h3>
+                        <p class="conferencier-role">Professeur de littérature</p>
+                    </div>
+                </div>
+                <div class="conferencier-card fade-in delay-3">
+                    <div class="conferencier-photo" style="background-image: url('Les conférenciers/Nicolas Dufetel.jpg');"></div>
+                    <div class="conferencier-info">
+                        <h3 class="conferencier-name">Nicolas Dufetel</h3>
+                        <p class="conferencier-role">Musicologue</p>
+                    </div>
+                </div>
+                <div class="conferencier-card fade-in delay-4">
+                    <div class="conferencier-photo" style="background-image: url('Les conférenciers/Christophe Impériali.JPG');"></div>
+                    <div class="conferencier-info">
+                        <h3 class="conferencier-name">Christophe Impériali</h3>
+                        <p class="conferencier-role">Conférencier</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-text" style="color: white;">
+                            Cercle Richard Wagner
+                            <span>de Lyon</span>
+                        </div>
+                    </a>
+                    <p>Association culturelle dédiée à la célébration et à la diffusion de l'œuvre de Richard Wagner depuis 1982. Membre du Richard Wagner Verband International.</p>
+                    <div class="footer-social">
+                        <a href="#">f</a>
+                        <a href="#">in</a>
+                        <a href="#">✉</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="crw-lyon-lecercle.html">Le Cercle</a></li>
+                        <li><a href="crw-lyon-evenements.html">Événements</a></li>
+                        <li><a href="bulletin d'inscription.pdf" target="_blank">Adhésion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Informations</h4>
+                    <ul class="footer-links">
+                        <li><a href="crw-lyon-contact.html">Contact</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@crw-lyon.fr">contact@crw-lyon.fr</a></li>
+                        <li><a href="#">Lyon, France</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-partners">
+                <h4>Nos partenaires</h4>
+                <ul class="footer-links">
+                    <li><a href="https://laviewagnerienne.canalblog.com" target="_blank">La Vie Wagnérienne</a></li>
+                    <li><a href="https://www.richard-wagner.org" target="_blank">Richard Wagner Verband International</a></li>
+                    <li><a href="https://richard-wagner-zentrum.de" target="_blank">Richard Wagner Zentrum</a></li>
+                    <li><a href="https://richard-wagner-web-museum.com" target="_blank">Richard Wagner Web Museum</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Cercle Richard Wagner de Lyon. Tous droits réservés.</p>
+                <p>Site offert par <a href="https://richard-wagner-web-museum.com" target="_blank">Richard Wagner Museum</a> et réalisé par <a href="https://pixel-drop.com" target="_blank">Pixel Drop</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile Menu
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Parallax effect on scroll
+        const parallaxElements = document.querySelectorAll('.parallax');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.dataset.speed) || 0.05;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + scrollY;
+                const offset = (scrollY - elementTop) * speed;
+
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.transform = `translateY(${offset}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
