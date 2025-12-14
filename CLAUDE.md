@@ -187,10 +187,63 @@ window.addEventListener('scroll', () => {
 - `delay-1` à `delay-4` : Délais pour effet décalé (staggered)
 - `parallax` + `data-speed="0.05"` : Effet parallax (valeur plus haute = plus lent)
 
+## Mode "Site bientôt disponible" (EN COURS)
+
+**État actuel** : Le site affiche une page "bientôt disponible" en attendant le paiement du client.
+
+### Fichiers concernés
+- `index.html` → Page "Site bientôt disponible" (design bleu/or avec logo)
+- `index-full.html` → **SAUVEGARDE du site complet original**
+- `.htaccess` → Redirige toutes les URLs vers index.html (sauf assets statiques)
+
+### Pour restaurer le site complet
+
+**Option 1 : Commande rapide**
+```bash
+cd "/Users/akligoudjil/Projets local/crw-lyon"
+cp index-full.html index.html
+git add index.html
+git commit -m "Restore full website after client payment"
+git push
+```
+
+**Option 2 : Restauration complète avec .htaccess**
+```bash
+cd "/Users/akligoudjil/Projets local/crw-lyon"
+cp index-full.html index.html
+
+# Restaurer l'ancien .htaccess
+cat > .htaccess << 'EOF'
+# Activer le moteur de réécriture
+RewriteEngine On
+
+# Rediriger index.html vers la racine
+RewriteCond %{THE_REQUEST} /index\.html [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Supprimer .html de l'URL affichée
+RewriteCond %{THE_REQUEST} \.html [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# Servir le fichier .html quand l'URL est sans extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+)$ $1.html [L]
+EOF
+
+git add -A
+git commit -m "Restore full website with clean URLs"
+git push
+```
+
+---
+
 ## Prochaines étapes
 - Intégrer les vraies photos
 - Créer les pages Adhésion et Contact
 - Validation finale avant 15/12
+- **Attendre paiement client puis restaurer le site complet**
 
 ## Notifications
 
