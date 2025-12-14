@@ -1,16 +1,9 @@
 # Activer le moteur de réécriture
 RewriteEngine On
 
-# Rediriger index.html vers la racine
-RewriteCond %{THE_REQUEST} /index\.html [NC]
-RewriteRule ^index\.html$ / [R=301,L]
-
-# Supprimer .html de l'URL affichée
-RewriteCond %{THE_REQUEST} \.html [NC]
-RewriteRule ^(.+)\.html$ /$1 [R=301,L]
-
-# Servir le fichier .html quand l'URL est sans extension
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.+)$ $1.html [L]
+# Rediriger TOUTES les pages vers index.html (page "bientôt disponible")
+# Sauf les fichiers statiques (images, CSS, JS, PDF, etc.)
+RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|svg|css|js|pdf|ico|webp|woff|woff2|ttf|eot)$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.html$
+RewriteCond %{REQUEST_URI} !^/$
+RewriteRule ^(.*)$ /index.html [L]
