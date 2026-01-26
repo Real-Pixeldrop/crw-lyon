@@ -1,9 +1,9 @@
 # Activer le moteur de réécriture
 RewriteEngine On
 
-# Rediriger TOUTES les pages vers index.html (page "bientôt disponible")
-# Sauf les fichiers statiques (images, CSS, JS, PDF, etc.)
-RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|svg|css|js|pdf|ico|webp|woff|woff2|ttf|eot)$ [NC]
+# Rediriger vers index.html (page mot de passe) SAUF index-full.html et fichiers statiques
+RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|svg|css|js|pdf|ico|webp|woff|woff2|ttf|eot|html)$ [NC]
 RewriteCond %{REQUEST_URI} !^/index\.html$
+RewriteCond %{REQUEST_URI} !^/index-full\.html$
 RewriteCond %{REQUEST_URI} !^/$
 RewriteRule ^(.*)$ /index.html [L]
