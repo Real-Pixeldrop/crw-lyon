@@ -946,8 +946,37 @@
                 <div class="about-paragraphs-wrap">
                     <p class="story-intro fade-in delay-3">Fondé en février 1982, le Cercle Richard Wagner-Lyon est une association régie par la loi du 1er juillet 1901. Il a été présidé durant plus de 30 années par sa fondatrice, Chantal Perrier aidée de son époux Henri Perrier qui est aussi l'auteur de nombreuses publications wagnériennes dont une biographie géographique de Wagner intitulée « Les rendez-vous wagnériens ».</p>
                     <p class="story-text fade-in delay-4">Le Cercle a pour but de faire connaître et d'approfondir la vie et l'œuvre artistique de Richard Wagner tout en abordant d'autres thèmes touchant à l'art en général, au théâtre, à la littérature… et cela sous forme de conférences, concerts, réunions amicales, auditions d'enregistrements, voyages en France et à l'étranger…</p>
-                    <p class="story-text fade-in delay-4">Parmi les manifestations les plus importantes : le Congrès International des Cercles Richard Wagner à Lyon en mars 1991, au cours duquel le Cercle donna naissance au « Richard Wagner Verband International » ; la création de deux concours de chant « Voix wagnériennes » en 1994 et 1997 en collaboration avec le Cercle Wagner de Strasbourg, dont le jury fut présidé par Wolfgang Wagner en 1994.</p>
-                    <p class="story-text fade-in delay-4">En 2015, après plus de trente ans de service, Chantal Perrier confia la présidence à Pascal Bouteldja, adhérent du Cercle depuis l'âge de quinze ans. En cette fin d'année 2025, le Cercle fait peau neuve avec un nouveau président : Bernard Bouchut, aidé par une équipe dynamique.</p>
+                    
+                    <div id="histoire-suite" style="display: none;">
+                        <p class="story-text">Parmi les manifestations les plus importantes, on peut noter :</p>
+                        <p class="story-text">• Le <strong>Congrès International des Cercles Richard Wagner</strong> à Lyon, en mars 1991, au cours duquel le Cercle Richard Wagner de Lyon, en coopération avec le Cercle Wagner de Francfort, donna naissance au « Richard Wagner Verband International » auquel les sociétés non allemandes peuvent adhérer.</p>
+                        <p class="story-text">• La création et réalisation, en 1994 et 1997, de deux <strong>concours de chant « Voix wagnériennes »</strong> en collaboration avec le Cercle Wagner de Strasbourg et le chef d'orchestre Theodor Guschlbauer. Le jury international fut présidé par Wolfgang Wagner lors du concours de 1994. Quelques excellents chanteurs tels que Detlef Roth, Mihoko Fujimura, Violetta Urmana… firent par la suite une très belle carrière avec des engagements dans les plus grands théâtres et notamment à Bayreuth.</p>
+                        <p class="story-text">• La réception de <strong>Wolfgang Wagner</strong> à l'occasion du 10ème anniversaire du Cercle et la création par quelques membres du CRWL d'une parodie sur le Ring de Wagner intitulée « Ring Story, ou le Ring en 90 minutes ».</p>
+                        <p class="story-text">• La <strong>Journée Wagner</strong> appelée encore « séminaire annuel » qui existe depuis la première année de fondation et qui a donné lieu à une revue annuelle appelée « Wagneriana Acta » jusqu'en 2018. Cette journée s'est ensuite appelée « Journée wagnérienne de Lyon » et a donné lieu à une nouvelle revue intitulée « Wagner Revue ».</p>
+                        <p class="story-text">En 2015, après plus de trente ans de service, Chantal Perrier confia la présidence à Pascal Bouteldja, adhérent du Cercle depuis l'âge de quinze ans. Il avait acquis toutes les compétences mais aussi les connaissances pour devenir un excellent président.</p>
+                        <p class="story-text">En cette fin d'année 2025, le Cercle fait peau neuve avec un nouveau président : <strong>Bernard Bouchut</strong>, aidé par une équipe dynamique.</p>
+                    </div>
+                    
+                    <p class="story-text fade-in delay-4" id="histoire-resume">Parmi les manifestations les plus importantes : le Congrès International des Cercles Richard Wagner à Lyon en mars 1991, la création de deux concours de chant « Voix wagnériennes » en 1994 et 1997, et la Journée Wagner annuelle depuis 1982.</p>
+                    
+                    <button onclick="toggleHistoire()" id="btn-histoire" style="background: var(--gold); color: white; border: none; padding: 12px 24px; font-size: 0.9rem; cursor: pointer; margin-top: 20px; font-family: 'Inter', sans-serif;">Lire la suite</button>
+                    
+                    <script>
+                    function toggleHistoire() {
+                        var suite = document.getElementById('histoire-suite');
+                        var resume = document.getElementById('histoire-resume');
+                        var btn = document.getElementById('btn-histoire');
+                        if (suite.style.display === 'none') {
+                            suite.style.display = 'block';
+                            resume.style.display = 'none';
+                            btn.textContent = 'Réduire';
+                        } else {
+                            suite.style.display = 'none';
+                            resume.style.display = 'block';
+                            btn.textContent = 'Lire la suite';
+                        }
+                    }
+                    </script>
                 </div>
             </div>
             <!-- Right: Bottom image -->
