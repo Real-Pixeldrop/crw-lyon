@@ -872,7 +872,10 @@
             <!-- Contact Form -->
             <div class="contact-form-wrapper fade-in-right">
                 <h3 class="form-title">Envoyez-nous un message</h3>
-                <form action="#" method="POST">
+                <form action="https://formsubmit.co/contact@crw-lyon.fr" method="POST">
+                    <input type="hidden" name="_next" value="https://crw-lyon.fr?message=sent">
+                    <input type="hidden" name="_subject" value="Nouveau message depuis le site CRW Lyon">
+                    <input type="hidden" name="_captcha" value="true">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstname">Prénom</label>
