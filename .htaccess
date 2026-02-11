@@ -15,8 +15,9 @@ RewriteRule ^(.*)$ /maintenance.html [L,R=302]
 RewriteCond %{THE_REQUEST} /index\.html [NC]
 RewriteRule ^index\.html$ / [R=301,L]
 
-# Supprimer .html de l'URL affichée
+# Supprimer .html de l'URL affichée (sauf maintenance)
 RewriteCond %{THE_REQUEST} \.html [NC]
+RewriteCond %{REQUEST_URI} !^/maintenance\.html$
 RewriteRule ^(.+)\.html$ /$1 [R=301,L]
 
 # Servir le fichier .html quand l'URL est sans extension
