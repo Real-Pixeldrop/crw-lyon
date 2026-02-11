@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site en maintenance - CRW Lyon</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a2e;
+            font-family: 'Georgia', serif;
+            color: #e0d5c1;
+        }
+        .container {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px 30px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #c9a84c;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #c9a84c;
+            margin: 20px auto;
+        }
+        .code-form {
+            margin-top: 30px;
+        }
+        .code-form input {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 1px solid #c9a84c44;
+            background: #16213e;
+            color: #e0d5c1;
+            border-radius: 6px;
+            text-align: center;
+            letter-spacing: 4px;
+            width: 220px;
+            font-family: 'Georgia', serif;
+        }
+        .code-form input:focus {
+            outline: none;
+            border-color: #c9a84c;
+        }
+        .code-form button {
+            display: block;
+            margin: 16px auto 0;
+            padding: 10px 30px;
+            background: #c9a84c;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .code-form button:hover {
+            background: #d4b55a;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CERCLE RICHARD WAGNER</h1>
+        <h1 style="font-size:1.2rem; color:#e0d5c1; opacity:0.6;">DE LYON</h1>
+        <div class="divider"></div>
+        <p class="subtitle">
+            Le site est actuellement en cours de maintenance.<br>
+            Nous serons de retour prochainement.
+        </p>
+        <div class="code-form">
+            <p style="font-size:0.85rem; opacity:0.5; margin-bottom:10px;">Acces autorise</p>
+            <input type="password" id="code" placeholder="Code" autocomplete="off">
+            <p class="error" id="error">Code incorrect</p>
+            <button onclick="checkCode()">Entrer</button>
+        </div>
+    </div>
+    <script>
+        function checkCode() {
+            var code = document.getElementById('code').value;
+            if (code === 'crwl2026') {
+                document.cookie = 'crw_access=1; path=/; max-age=86400';
+                window.location.href = '/index.html';
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+        document.getElementById('code').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkCode();
+        });
+    </script>
+</body>
+</html>

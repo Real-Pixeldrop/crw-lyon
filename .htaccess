@@ -1,6 +1,16 @@
 # Activer le moteur de réécriture
 RewriteEngine On
 
+# === MODE MAINTENANCE ===
+# Laisser passer la page maintenance elle-meme
+RewriteCond %{REQUEST_URI} !^/maintenance\.html$
+# Laisser passer les fichiers statiques (images, CSS, JS)
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|webp|gif|svg|ico|woff|woff2|ttf|pdf)$
+# Si pas de cookie d'acces, rediriger vers maintenance
+RewriteCond %{HTTP_COOKIE} !crw_access=1
+RewriteRule ^(.*)$ /maintenance.html [L,R=302]
+# === FIN MODE MAINTENANCE ===
+
 # Rediriger index.html vers la racine
 RewriteCond %{THE_REQUEST} /index\.html [NC]
 RewriteRule ^index\.html$ / [R=301,L]
